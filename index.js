@@ -1,33 +1,31 @@
 require('dotenv').config();
 
-const express=require('express');
-const cors=require('cors');
+const express = require('express');
+const cors = require('cors');
 
-const{ dbConnection } =require('./src/backend/BD/config.js');
+const { dbConnection } = require('./src/backend/BD/config');
 
-//Crear el servidor de express
-const app=express();
+// Crear el servidor de express
+const app = express();
 
-//Configurar cors
-app.use(cors());
+// Configurar CORS
+app.use( cors() );
 
-//Base de datos
+// Lectura y parseo del body
+app.use( express.json() );
+
+// Base de datos
 dbConnection();
 
 
-//Rutas
-//cadena Conex URI compass 
-//mongodb+srv://JesusRueda:Goku9037%40@cluster0.ebxmw4w.mongodb.net/ProyectoFinalDAW
-app.get('/',(req,res)=>{
+// Rutas
+app.use( '/api/usuarios', require('./src/backend/routes/usuarios-routes') );
+app.use( '/api/login', require('./src/backend/routes/auth') );
+app.use( '/api/ocupacion', require('./src/backend/routes/ocupacion-routes') );
 
-    res.json({
-        ok:true,
-        msg: "HOLA Mundo"
-    });
 
+
+app.listen( process.env.PORT, () => {
+    console.log('Servidor corriendo en puerto ' + process.env.PORT );
 });
 
-app.listen(process.env.PORT, ()=>{
-
-    console.log('Servidor corriendo en puerto' + process.env.PORT);
-});
