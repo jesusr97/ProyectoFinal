@@ -4,55 +4,59 @@ const Ocupacion = require('../models/ocupacion');
 const { generarJWT } = require('../helpers/jwt');
 
 
-const getOcupaciones = (req, res = response) =>{
+const getServicios = (req, res = response) =>{
 
     res.json({
         ok:true,
-        msg:'getOcupaciones'
+        msg:'getServicios'
     });
 
 }
-const crearOcupaciones = async (req, res = response) =>{
+const crearServicios = async (req, res = response) =>{
 
-    
-    const user_id = req.user_id;
-    const ocupacion = new Ocupacion({
-        usuario: user_id,
-        ...req.body
+    res.json({
+        ok:true,
+        msg:'crearServicios'
     });
 
-    try {
-    const ocupacionDB= await ocupacion.save();
+    // const user_id = req.user_id;
+    // const ocupacion = new Ocupacion({
+    //     usuario: user_id,
+    //     ...req.body
+    // });
 
-        await ocupacion.save();
+    // try {
+    // const ocupacionDB= await ocupacion.save();
+
+    //     await ocupacion.save();
         
-        res.json({
-            ok:true,
-            ocupacion: ocupacionDB
-        });
-    } catch (error) {
-        res.status(500).json({
-            ok:false,
-            msg: 'Hable con el administrador'
-        })
-    }
+    //     res.json({
+    //         ok:true,
+    //         ocupacion: ocupacionDB
+    //     });
+    // } catch (error) {
+    //     res.status(500).json({
+    //         ok:false,
+    //         msg: 'Hable con el administrador'
+    //     })
+    // }
 
 
 
 }
-const actualizarOcupaciones = (req, res = response) =>{
+const actualizarServicios = (req, res = response) =>{
 
     res.json({
         ok:true,
-        msg:'actualizarOcupaciones'
+        msg:'actualizarServicios'
     });
 
 }
-const borrarOcupaciones = (req, res = response) =>{
+const borrarServicios = (req, res = response) =>{
 
     res.json({
         ok:true,
-        msg:'borrarOcupaciones'
+        msg:'borrarServicios'
     });
 
 }
@@ -60,9 +64,9 @@ const borrarOcupaciones = (req, res = response) =>{
 
 
 module.exports = {
-    getOcupaciones,
-    crearOcupaciones,
-    actualizarOcupaciones,
-    borrarOcupaciones
+    getServicios,
+    crearServicios,
+    actualizarServicios,
+    borrarServicios
 
 }
