@@ -1,67 +1,70 @@
 const {Schema, model} =require('mongoose');
+const { isEnumDeclaration } = require('typescript');
 
 
-const UsuarioSchema= Schema({
+const ServiciosSchema= Schema({
     
     
-    nombre: {
-        type: String,
+    confirma_usuarios: {
+        type: Boolean,
         required: true
         
     },
-    apellidos: {
-        type: String,
-        required: true
-        
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    fecha_nac: {
+    dia_inicio: {
         type: Date,
         required: true
         
     },
-    password: {
-        type :String,
-        required: true,
+    dia_fin: {
+        type: Date,
+        required: true
     },
-    saldo_puntos: {
-        type: Number,
-        required: false
+    hora_inicio: {
+        type: Date,
+        required: true
         
     },
-    img: {
-        type: String,
-    },
-    rol: {
-        type: String,
+    hora_fin: {
+        type :Date,
         required: true,
-        default: 'USER_ROL'
     },
-    google: {
-        type: Boolean,
-        default: false
+    total_horas: {
+        type: Number,
+        required: true
+        
+    },
+    valoraciones: {
+        type: isEnumDeclaration={
+            UNA_ESTRELLA: '1',
+            DOS_ESTRELLAS: '2',
+            TRES_ESTRELLAS: '3',
+            CUATRO_ESTRELLAS: '4',
+            CINCO_ESTRELLAS: '5',
+        },
+        required:false
+
+    },
+    comentarios: {
+        type: Text,
+        required: false,
     },
     ocupacion: {
         type: Schema.Types.ObjectId,
         ref: 'Ocupacion',
         required: false
     },
-    servicios: {
+    usuario: {
         type: Schema.Types.ObjectId,
-        ref: 'Servicios',
-        required: false
+        ref: 'usuarios',
+        required: true
     }
 });
 
-UsuarioSchema.method('toJSON',function(){
+ServiciosSchema.method('toJSON',function(){
     const { _v,_id, password, ...object }= this.toObject();
 
     object.id_usuario = _id;
     return object;
-});
+},{collection: 'servicios'});
 
-module.exports =model('usuarios', UsuarioSchema);
+module.exports =model('servicios', ServiciosSchema);

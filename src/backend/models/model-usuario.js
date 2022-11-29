@@ -45,16 +45,16 @@ const UsuarioSchema= Schema({
         type: Boolean,
         default: false
     },
-    ocupacion: {
+    ocupacion: [{
         type: Schema.Types.ObjectId,
         ref: 'Ocupacion',
         required: false
-    },
-    servicios: {
+    }],
+    servicios: [{
         type: Schema.Types.ObjectId,
         ref: 'Servicios',
         required: false
-    }
+    }]
 });
 
 UsuarioSchema.method('toJSON',function(){
