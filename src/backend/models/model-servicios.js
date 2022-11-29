@@ -61,7 +61,7 @@ const ServiciosSchema= Schema({
 });
 
 ServiciosSchema.method('toJSON',function(){
-    const { _v,_id, password, ...object }= this.toObject();
+    const { _id, password, ...object }= this.toObject();
 
     object.id_usuario = _id;
     return object;

@@ -18,7 +18,7 @@ const OcupacionSchema= Schema({
 }, {collection: 'ocupacion'});
 
 OcupacionSchema.method('toJSON',function(){
-    const { _v, ...object }= this.toObject();
+    const { ...object }= this.toObject();
 
     return object;
 },{collection: 'ocupacion'});
