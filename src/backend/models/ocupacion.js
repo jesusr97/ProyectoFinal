@@ -5,7 +5,7 @@ const OcupacionSchema= Schema({
 
     ponderacion: {
         type: Number,
-        required: false
+        required: true
         
     },
     usuario: {

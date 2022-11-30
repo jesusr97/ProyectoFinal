@@ -1,8 +1,8 @@
 const { response } = require('express');
 const { validationResult } = require('express-validator');
-const Ocupacion = require('../models/ocupacion');
+const Servicios = require('../models/model-servicios');
 const { generarJWT } = require('../helpers/jwt');
-
+const { getOcupaciones } = require('./ocupacion-controller');
 
 const getServicios = (req, res = response) =>{
 
@@ -14,33 +14,26 @@ const getServicios = (req, res = response) =>{
 }
 const crearServicios = async (req, res = response) =>{
 
-    res.json({
-        ok:true,
-        msg:'crearServicios'
+    const user_id= req.user_id;
+    const servicio= new Servicios({
+        usuario:user_id,
+       ...req.body
     });
 
-    // const user_id = req.user_id;
-    // const ocupacion = new Ocupacion({
-    //     usuario: user_id,
-    //     ...req.body
-    // });
 
-    // try {
-    // const ocupacionDB= await ocupacion.save();
-
-    //     await ocupacion.save();
+    try {
+        const serviciosDB= await servicio.save();
+        res.json({
+            ok:true,
+            servicio: serviciosDB
+        });
         
-    //     res.json({
-    //         ok:true,
-    //         ocupacion: ocupacionDB
-    //     });
-    // } catch (error) {
-    //     res.status(500).json({
-    //         ok:false,
-    //         msg: 'Hable con el administrador'
-    //     })
-    // }
-
+    } catch (error) {
+        res.status(500).json({
+            ok: false,
+            msg: "Hable con el administrador"
+        })
+    }
 
 
 }
@@ -60,7 +53,6 @@ const borrarServicios = (req, res = response) =>{
     });
 
 }
-
 
 
 module.exports = {

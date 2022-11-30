@@ -1,9 +1,9 @@
 const {Schema, model} =require('mongoose');
-const { isEnumDeclaration } = require('typescript');
+// const { TimeInterval, timeInterval } = require('rxjs/internal/operators/timeInterval');
+// const { isEnumDeclaration } = require('typescript');
 
 
 const ServiciosSchema= Schema({
-    
     
     confirma_usuarios: {
         type: Boolean,
@@ -25,7 +25,7 @@ const ServiciosSchema= Schema({
         
     },
     hora_fin: {
-        type :Date,
+        type: Date, 
         required: true,
     },
     total_horas: {
@@ -34,18 +34,12 @@ const ServiciosSchema= Schema({
         
     },
     valoraciones: {
-        type: isEnumDeclaration={
-            UNA_ESTRELLA: '1',
-            DOS_ESTRELLAS: '2',
-            TRES_ESTRELLAS: '3',
-            CUATRO_ESTRELLAS: '4',
-            CINCO_ESTRELLAS: '5',
-        },
+        type: Number,
         required:false
 
     },
     comentarios: {
-        type: Text,
+        type: String,
         required: false,
     },
     ocupacion: {
@@ -67,4 +61,4 @@ ServiciosSchema.method('toJSON',function(){
     return object;
 },{collection: 'servicios'});
 
-module.exports =model('servicios', ServiciosSchema);
+module.exports =model('Servicios', ServiciosSchema);
