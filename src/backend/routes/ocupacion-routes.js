@@ -15,8 +15,9 @@ const router = Router();
 router.get('/', validarJWT, getOcupaciones);
 
 router.post('/', [
+    validarJWT,
+    check('ponderacion','El usuario debe tener una ponderacion').not().isEmpty(),
     validarCampos,
-    validarJWT
 ], crearOcupaciones);
 
 router.put('/:id', [

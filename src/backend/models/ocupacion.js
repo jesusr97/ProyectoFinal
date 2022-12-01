@@ -5,13 +5,13 @@ const OcupacionSchema= Schema({
 
     ponderacion: {
         type: Number,
-        required: false
+        required: true
         
     },
     usuario: {
         required: true,
         type: Schema.Types.ObjectId,
-        ref: 'usuario'
+        ref: 'usuarios'
   
     }
     

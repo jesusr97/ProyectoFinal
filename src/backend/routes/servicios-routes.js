@@ -11,12 +11,22 @@ const { validarJWT } = require('../middlewares/validar-jwt');
 
 const router = Router();
 
+// let hora_fin = new Date();
+// hora_fin.getTime();
 
 router.get('/', validarJWT, getServicios);
 
 router.post('/', [
+    validarJWT,
+    check('confirma_usuarios').not().isEmpty(),
+    check('dia_inicio').isDate().not().isEmpty(),
+    check('dia_fin').isDate().not().isEmpty(),
+    check('hora_inicio').isDate().not().isEmpty(),
+    check('hora_fin').isDate().not().isEmpty(),
+    check('total_horas').not().isEmpty(),
+    check('ocupacion','La ocupacion id debe de ser valida').isMongoId(),
+
     validarCampos,
-    validarJWT
 ], crearServicios);
 
 router.put('/:id', [

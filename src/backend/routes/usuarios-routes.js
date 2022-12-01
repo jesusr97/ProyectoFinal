@@ -26,9 +26,10 @@ router.post('/', [
 
 router.put('/:id', [
     validarJWT,
-    check('nombre', 'El nombre es obligatorio').not().isEmpty(),
-    check('email', 'El correo es obligatorio').isEmail(),
-    check('rol', 'El rol es obligatorio').not().isEmpty(),
+    // check('nombre', 'El nombre es obligatorio').not().isEmpty(),
+    // check('email', 'El correo es obligatorio').isEmail(),
+    // check('rol', 'El rol es obligatorio').not().isEmpty(),
+    // check('password', 'El rol es obligatorio').not().isEmpty(),
     validarCampos,
 
 ], actualizarUsuario);
