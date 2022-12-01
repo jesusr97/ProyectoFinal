@@ -11,7 +11,7 @@ const OcupacionSchema= Schema({
     usuario: {
         required: true,
         type: Schema.Types.ObjectId,
-        ref: 'usuario'
+        ref: 'usuarios'
   
     }
     

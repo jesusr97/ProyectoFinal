@@ -4,11 +4,13 @@ const Servicios = require('../models/model-servicios');
 const { generarJWT } = require('../helpers/jwt');
 const { getOcupaciones } = require('./ocupacion-controller');
 
-const getServicios = (req, res = response) =>{
+const getServicios = async (req, res = response) =>{
 
+    const servicios= await Servicios.find().populate('usuario','nombre')
+    .populate('ocupacion','ponderacion');
     res.json({
         ok:true,
-        msg:'getServicios'
+        servicios
     });
 
 }

@@ -24,6 +24,8 @@ router.post('/', [
     check('hora_inicio').isDate().not().isEmpty(),
     check('hora_fin').isDate().not().isEmpty(),
     check('total_horas').not().isEmpty(),
+    check('ocupacion','La ocupacion id debe de ser valida').isMongoId(),
+
     validarCampos,
 ], crearServicios);
 
