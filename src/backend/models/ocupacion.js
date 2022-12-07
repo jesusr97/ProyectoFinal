@@ -13,6 +13,11 @@ const OcupacionSchema= Schema({
         type: Schema.Types.ObjectId,
         ref: 'usuarios'
   
+    },
+    servicios: {
+        required: false,
+        type: Schema.Types.ObjectId,
+        ref: 'servicios'
     }
     
 }, {collection: 'ocupacion'});
