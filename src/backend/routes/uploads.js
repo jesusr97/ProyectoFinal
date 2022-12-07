@@ -10,7 +10,7 @@ const router =Router();
 
 router.use( expressFileUpload() );
 
-router.put('/:tipo/:id', validarJWT,fileUpload);
+router.put('/:tipo/:id', validarJWT, fileUpload);
 
 
 module.exports = router;
