@@ -1,16 +1,18 @@
 const { response } = require('express');
 // const { validationResult } = require('express-validator');
 const Ocupacion = require('../models/ocupacion');
+const Servicios = require('../models/model-servicios');
 const { generarJWT } = require('../helpers/jwt');
 const { async } = require('rxjs');
 // const {UsuarioSchema} = require('../models/model-usuario');
 
-
 const getOcupaciones = async (req, res = response) =>{
 
     const ocupacion= await Ocupacion.find().populate('usuario','nombre img')
-    .populate('servicios','dia_inicio');
-
+    .populate// ({ path: 'servicios', model: Servicios })
+    ('servicios',
+     'confirma_usuarios dia_inicio dia_fin hora_inicio hora_fin total_horas valoraciones comentarios'
+    , Servicios)
     res.json({
         ok:true,
         ocupacion

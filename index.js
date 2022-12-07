@@ -23,6 +23,8 @@ app.use( '/api/usuarios', require('./src/backend/routes/usuarios-routes') );
 app.use( '/api/login', require('./src/backend/routes/auth') );
 app.use( '/api/ocupacion', require('./src/backend/routes/ocupacion-routes') );
 app.use( '/api/servicios', require('./src/backend/routes/servicios-routes') );
+app.use( '/api/todo', require('./src/backend/routes/busquedas') );
+app.use( '/api/upload', require('./src/backend/routes/uploads') );
 
 
 
