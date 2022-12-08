@@ -10,7 +10,7 @@ const getUsuarios = async (req, res) => {
 
     const [usuarios, total] =  await Promise.all([
         Usuario
-            .find({}, 'nombre apellidos email fecha_nac rol')
+            .find({}, 'nombre apellidos email fecha_nac rol img')
             .skip( pag )
             .limit( 5 ),  //Con esto pillamos solo el nombre del get usuarios
 
