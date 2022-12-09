@@ -39,20 +39,70 @@ const crearServicios = async (req, res = response) =>{
 
 
 }
-const actualizarServicios = (req, res = response) =>{
+const actualizarServicios = async (req, res = response) =>{
 
-    res.json({
-        ok:true,
-        msg:'actualizarServicios'
-    });
+    const id = req.params.id;
+    const user_id = req.user_id;
+    try {
+       
+        const servicioBD = await Servicios.findById(id);
+
+        if(!servicioBD){
+            return res.status(404).json({
+                ok: false,
+                msg: "El servicio no se encuentra por ese id"
+            })
+        }
+
+        const cambiosServicios = {
+            ...req.body,
+            usuario: user_id
+        }
+  
+        const servicioActualizado = await Servicios.findByIdAndUpdate(id, cambiosServicios, {new: true});
+        
+        res.json({
+            ok: true,
+            servicio: servicioActualizado
+        })
+
+
+    } catch (error) {
+        res.status(500).json({
+            ok: false,
+            msg: "Hable con el administrador"
+        })
+    }
 
 }
-const borrarServicios = (req, res = response) =>{
+const borrarServicios = async (req, res = response) =>{
 
-    res.json({
-        ok:true,
-        msg:'borrarServicios'
-    });
+    const id = req.params.id;
+    try {
+       
+        const servicioBD = await Servicios.findById(id);
+
+        if(!servicioBD){
+            return res.status(404).json({
+                ok: false,
+                msg: "El servicio no se encuentra por ese id"
+            })
+        }
+
+      await Servicios.findByIdAndDelete(id);
+        
+        res.json({
+            ok: true,
+            msg: "Servicio eliminado"
+        })
+
+
+    } catch (error) {
+        res.status(500).json({
+            ok: false,
+            msg: "Hable con el administrador"
+        })
+    }
 
 }
 

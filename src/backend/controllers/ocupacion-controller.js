@@ -47,20 +47,70 @@ const crearOcupaciones = async (req, res = response) =>{
 
 
 }
-const actualizarOcupaciones = (req, res = response) =>{
+const actualizarOcupaciones = async (req, res = response) =>{
 
-    res.json({
-        ok:true,
-        msg:'actualizarOcupaciones'
-    });
+    const id = req.params.id;
+    const user_id = req.user_id;
+    try {
+       
+        const ocupacionDB = await Ocupacion.findById(id);
+
+        if(!ocupacionDB){
+            return res.status(404).json({
+                ok: false,
+                msg: "Ocupacion no encontrada por id"
+            })
+        }
+
+        const cambiosOcupacion = {
+            ...req.body,
+            usuario: user_id
+        }
+  
+        const ocupacionActualizada = await Ocupacion.findByIdAndUpdate(id, cambiosOcupacion, {new: true});
+        
+        res.json({
+            ok: true,
+            ocupacion: ocupacionActualizada
+        })
+
+
+    } catch (error) {
+        res.status(500).json({
+            ok: false,
+            msg: "Hable con el administrador"
+        })
+    }
 
 }
-const borrarOcupaciones = (req, res = response) =>{
+const borrarOcupaciones = async (req, res = response) =>{
 
-    res.json({
-        ok:true,
-        msg:'borrarOcupaciones'
-    });
+    const id = req.params.id;
+    try {
+       
+        const ocupacionDB = await Ocupacion.findById(id);
+
+        if(!ocupacionDB){
+            return res.status(404).json({
+                ok: false,
+                msg: "Ocupacion no encontrada por id"
+            })
+        }
+
+        await Ocupacion.findByIdAndDelete(id);
+        
+        res.json({
+            ok: true,
+            msg: "Ocupacion Eliminada"
+        })
+
+
+    } catch (error) {
+        res.status(500).json({
+            ok: false,
+            msg: "Hable con el administrador"
+        })
+    }
 
 }
 

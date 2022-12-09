@@ -22,6 +22,7 @@ router.post('/', [
 
 router.put('/:id', [
     validarJWT,
+    check('ponderacion','El usuario debe tener una ponderacion').not().isEmpty(),
     validarCampos,
 
 ], actualizarOcupaciones);
