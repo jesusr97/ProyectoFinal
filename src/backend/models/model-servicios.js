@@ -7,7 +7,8 @@ const ServiciosSchema= Schema({
     
     confirma_usuarios: {
         type: Boolean,
-        required: true
+        required: true,
+        default: 0
         
     },
     dia_inicio: {
@@ -15,22 +16,23 @@ const ServiciosSchema= Schema({
         required: true
         
     },
-    dia_fin: {
-        type: Date,
-        required: true
-    },
     hora_inicio: {
         type: Date,
         required: true
         
     },
+    dia_fin: {
+        type: Date,
+        required: false
+    },
     hora_fin: {
         type: Date, 
-        required: true,
+        required: false,
     },
     total_horas: {
         type: Number,
-        required: true
+        required: true,
+        default: 0
         
     },
     valoraciones: {
@@ -50,6 +52,11 @@ const ServiciosSchema= Schema({
     usuario: {
         type: Schema.Types.ObjectId,
         ref: 'usuarios',
+        required: true
+    },
+    trabajos: {
+        type: Schema.Types.ObjectId,
+        ref: 'trabajos',
         required: true
     }
 });

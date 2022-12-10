@@ -41,10 +41,6 @@ const UsuarioSchema= Schema({
         required: true,
         default: 'USER_ROL'
     },
-    google: {
-        type: Boolean,
-        default: false
-    },
     ocupacion: [{
         type: Schema.Types.ObjectId,
         ref: 'Ocupacion',
@@ -54,7 +50,12 @@ const UsuarioSchema= Schema({
         type: Schema.Types.ObjectId,
         ref: 'Servicios',
         required: false
-    }]
+    }],
+    trabajos: {
+        type: Schema.Types.ObjectId,
+        ref: 'trabajos',
+        required: true
+    }
 });
 
 UsuarioSchema.method('toJSON',function(){

@@ -3,7 +3,7 @@ const {Schema, model} =require('mongoose');
 
 const OcupacionSchema= Schema({
 
-    ponderacion: {
+    puntuacion: {
         type: Number,
         required: true
         
@@ -15,9 +15,14 @@ const OcupacionSchema= Schema({
   
     },
     servicios: {
-        required: false,
+        required: true,
         type: Schema.Types.ObjectId,
         ref: 'servicios'
+    },
+    trabajos: {
+        type: Schema.Types.ObjectId,
+        ref: 'trabajos',
+        required: true
     }
     
 }, {collection: 'ocupacion'});
