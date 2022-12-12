@@ -35,6 +35,7 @@ const UsuarioSchema= Schema({
     },
     img: {
         type: String,
+        required: false,
     },
     rol: {
         type: String,
@@ -54,7 +55,7 @@ const UsuarioSchema= Schema({
     trabajos: {
         type: Schema.Types.ObjectId,
         ref: 'trabajos',
-        required: true
+        required: false
     }
 });
 

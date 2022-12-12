@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { RegisterComponent } from './register/register.component';
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule  //Formularios reactivos  -> podemos definir todo en el ts de registro
+    ReactiveFormsModule,  //Formularios reactivos  -> podemos definir todo en el ts de registro
+    HttpClientModule
   ]
 })
 export class AuthModule { }
