@@ -17,9 +17,9 @@ export class RegisterComponent{
 
     nombre: ['Jesuseorjs',[ Validators.required , Validators.minLength(3)] ],  // esto es para que salga por defecto rellenado con el nombre que queramos
     apellidos: ['Rueda',[ Validators.required , Validators.minLength(3)] ],  // esto es para que salga por defecto rellenado con el nombre que queramos
-    email: ['prueba@prueba.com',[ Validators.required , Validators.email]],                    // eliminiar luego pot defecto (solo para pruebas)
-    password: ['123456',[ Validators.required , Validators.minLength(6)]],                    // eliminiar luego pot defecto (solo para pruebas)
-    password2: ['123456',[ Validators.required , Validators.minLength(6)]],                    // eliminiar luego pot defecto (solo para pruebas)
+    email: ['jesusete2@gmail.com',[ Validators.required , Validators.email]],                    // eliminiar luego pot defecto (solo para pruebas)
+    password: ['1234',[ Validators.required , Validators.minLength(4)]],                    // eliminiar luego pot defecto (solo para pruebas)
+    password2: ['1234',[ Validators.required , Validators.minLength(4)]],                    // eliminiar luego pot defecto (solo para pruebas)
     fecha_nac: ['',[ Validators.required]],                    // eliminiar luego pot defecto (solo para pruebas)
     terminos: [true,[ Validators.required]], 
 

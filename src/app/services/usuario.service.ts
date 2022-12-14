@@ -5,6 +5,7 @@ import { RegisterForm } from '../interfaces/register-form.interface';
 import { environment } from '../../environments/environment';
 import { LoginForm } from '../interfaces/login-form.interfaces';
 import { Observable, of } from 'rxjs';
+import { Usuario } from '../models/usuario.model';
 
 const base_url = environment.base_url;
 
@@ -13,25 +14,43 @@ const base_url = environment.base_url;
 })
 export class UsuarioService {
 
+  public usuario: Usuario;
+
   constructor( private http: HttpClient ) { }
+
+  get token():string {
+    return localStorage.getItem('token') || '';
+  }
+
+  get user_id():string {
+    return this.usuario.id_usuario || '';
+  }
 
   logout(){
     localStorage.removeItem('token');
   }
 
   validarToken (): Observable<boolean> {
-    const token = localStorage.getItem('token') || '';
 
     return this.http.get(`${ base_url }/login/renew`, {
       headers: {
-        'x-token': token
+        'x-token': this.token
       }
     }).pipe(
-      tap((resp:any) => {
+      map((resp:any) => {
+        const { nombre, apellidos, email, fecha_nac , img = '' , saldo_puntos,
+                rol, id_usuario} = resp.usuario;
+
+        this.usuario = new Usuario( nombre, apellidos , email, 
+                                    fecha_nac ,img ,
+                                    saldo_puntos, rol, '' ,id_usuario );
+
+        // this.usuario.imprimirUsuario();      
+
         localStorage.setItem('token', resp.token);
+        return true;
 
       }),
-      map( resp => true),
       catchError( error => of(false) )
     );
   }
@@ -46,6 +65,20 @@ export class UsuarioService {
               )
     
   }
+  actualizarPerfil(data: {email:string, nombre: string , apellidos: string, rol:string}){
+
+    data  = {
+      ...data,
+      rol: this.usuario.rol
+    }
+    return this.http.put(`${ base_url }/usuarios/${this.user_id}`, data, {
+      headers: {
+        'x-token': this.token
+      }
+
+    });
+
+  }
 
   login ( formData: LoginForm ){
 
@@ -57,4 +90,7 @@ export class UsuarioService {
               )
     
   }
+
+
+
 }
