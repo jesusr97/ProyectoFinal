@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap, map, catchError } from 'rxjs/operators';
+import { tap, map, catchError, delay } from 'rxjs/operators';
 import { RegisterForm } from '../interfaces/register-form.interface';
 import { environment } from '../../environments/environment';
 import { LoginForm } from '../interfaces/login-form.interfaces';
@@ -16,6 +16,13 @@ export class UsuarioService {
 
   public usuario: Usuario;
 
+  get headers(){
+    return {
+      headers: {
+        'x-token': this.token
+      }
+    }
+  }
   constructor( private http: HttpClient ) { }
 
   get token():string {
@@ -91,6 +98,19 @@ export class UsuarioService {
     
   }
 
+  cargarUsuarios(desde: number = 0){
 
+    const url = `${base_url}/usuarios?pag=${desde}`;
+    return this.http.get<any>(url, this.headers)
+            .pipe( delay(500), map(resp =>{
+              const usuarios = resp.usuarios.map(user => new Usuario(user.nombre, user.apellidos,
+                 user.email,user.fecha_nac,user.img,user.saldo_puntos,user.rol,'',user.id_usuario))
+              return {
+                total: resp.total,
+                usuarios
+              };
+            }))
+
+  }
 
 }
