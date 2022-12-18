@@ -46,5 +46,27 @@ export class OcupacionService {
   }
 
 
+  crearOcupaciones(puntuaciones: any){
+         console.log('puntuaciones')
+         console.log(puntuaciones)
+    // const url = `${base_url}/ocupacion`;
+    
+    // return this.http.post(url, { puntuaciones },this.headers);
+            
+  }
+
+  actualizarOcupaciones(puntuaciones: any){
+    console.log('puntuaciones')
+    console.log(puntuaciones.usuario._id)
+   const puntuacion = puntuaciones.puntuacion;
+   const id_ocupacion=  puntuaciones._id;
+   const usuario=  puntuaciones.usuario._id;
+   const servicios=  puntuaciones.servicios._id;
+
+      const url = `${base_url}/ocupacion/${id_ocupacion}`;
+
+      return this.http.put(url, { puntuacion, usuario},this.headers);
+            
+  }
 
 }

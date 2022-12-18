@@ -9,7 +9,7 @@ export class Ocupacion {
 
     constructor(
 
-        public ponderacion: string,
+        public ponderacion: number,
         public _id?: string,
         // public ocupacion?:any,
         public trabajos?:any,

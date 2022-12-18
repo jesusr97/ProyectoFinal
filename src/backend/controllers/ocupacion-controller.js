@@ -7,8 +7,9 @@ const { async } = require('rxjs');
 // const {UsuarioSchema} = require('../models/model-usuario');
 
 const getOcupaciones = async (req, res = response) =>{
+    const id = req.params.id;
 
-    const ocupacion= await Ocupacion.find().populate('usuario','nombre img')
+    const ocupacion= await Ocupacion.find(id).populate('usuario','nombre apellidos email img')
     .populate// ({ path: 'servicios', model: Servicios })
     ('servicios',
      'confirma_usuarios dia_inicio dia_fin hora_inicio hora_fin total_horas valoraciones comentarios'
@@ -64,7 +65,7 @@ const actualizarOcupaciones = async (req, res = response) =>{
 
         const cambiosOcupacion = {
             ...req.body,
-            usuario: user_id
+            usuario: req.body.usuario
         }
   
         const ocupacionActualizada = await Ocupacion.findByIdAndUpdate(id, cambiosOcupacion, {new: true});

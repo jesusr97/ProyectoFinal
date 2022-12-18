@@ -30,20 +30,27 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Usuarios</th>
+                                <th>Nombre Usuario</th>
+                                <th>Correo Usuario</th>
                                 <th>Puntuaciones</th>
                                 <th class="text-nowrap">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let ocupacion of ocupaciones">
-                                <td>nombre y apellidos usuario</td>
-                                <td>{{ocupacion.puntuacion}}</td>
+                                <td>{{ocupacion.usuario.nombre}} {{ocupacion.usuario.apellidos}}</td>
+                                <td>{{ocupacion.usuario.email}}</td>
+
+                                <input type="text"
+                                        class="form-control"
+                                        placeholder="Puntuacion"
+                                        [(ngModel)]="ocupacion.puntuacion"/>
+                                <!-- <td>{{ocupacion.puntuacion}}</td> -->
 
                                 <td class="text-nowrap text-center">
-                                    <a href="#" data-toggle="tooltip" data-original-title="Editar"> <i
+                                    <a  class="cursor" data-toggle="tooltip" data-original-title="Guardar Cambios" (click)="actualizarOcupaciones(ocupacion)"> <i
                                             class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                    <a href="#" data-toggle="tooltip" data-original-title="Eliminar"> <i
+                                    <a class="cursor" data-toggle="tooltip" data-original-title="Eliminar"> <i
                                             class="fa fa-close text-danger"></i> </a>
                                 </td>
                             </tr>
@@ -51,9 +58,9 @@
                     </table>
                 </div>
 
-                <button class="btn btn-secondary">Anteriores</button>
+                <!-- <button class="btn btn-secondary">Anteriores</button>
                 &nbsp;
-                <button class="btn btn-secondary">Siguientes</button>
+                <button class="btn btn-secondary">Siguientes</button> -->
 
             </div>
         </div>

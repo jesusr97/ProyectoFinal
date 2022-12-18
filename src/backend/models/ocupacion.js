@@ -15,7 +15,7 @@ const OcupacionSchema= Schema({
   
     },
     servicios: {
-        required: true,
+        required: false,
         type: Schema.Types.ObjectId,
         ref: 'servicios'
     },
