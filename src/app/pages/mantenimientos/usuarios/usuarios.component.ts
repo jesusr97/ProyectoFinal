@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
 import { UsuarioService } from '../../../services/usuario.service';
 import { Usuario } from '../../../models/usuario.model';
 import { BusquedasService } from '../../../services/busquedas.service';
+import { OcupacionComponent } from '../ocupacion/ocupacion.component';
 
 @Component({
   selector: 'app-usuarios',
@@ -11,6 +12,9 @@ import { BusquedasService } from '../../../services/busquedas.service';
 })
 export class UsuariosComponent implements OnInit {
 
+  // @Output() myOutput = new EventEmitter<any>();
+  // @ViewChild(OcupacionComponent) bComponent: OcupacionComponent;
+  
   public totalUsuarios: number = 0;
   public usuarios: Usuario[] = [];
   public usuariosTemp: Usuario[] = [];
@@ -22,7 +26,7 @@ export class UsuariosComponent implements OnInit {
   ngOnInit(): void {
 
     this.cargarUsuarios();
-
+    // this.bComponent.buscar() = this.myOutput;
   }
 
   cargarUsuarios (){

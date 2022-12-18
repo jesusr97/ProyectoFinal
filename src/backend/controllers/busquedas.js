@@ -69,7 +69,28 @@ const getDocumentosCollection = async (req , res = response) => {
 }
 
 
+const getUsuarioID = async(req , res = response) => {
+
+    const busqueda = req.params.busqueda;
+    const regularExpresion = busqueda;
+    console.log(regularExpresion);
+
+    Usuario.findById
+    const [usuarios /*,ocupaciones,servicios*/] = await Promise.all([
+        Usuario.findById(regularExpresion),
+
+    ]);
+
+    res.json({
+        ok: true,
+        usuarios,
+
+    });
+}
+
+
 module.exports = {
     getTodo,
-    getDocumentosCollection
+    getDocumentosCollection,
+    getUsuarioID
 }

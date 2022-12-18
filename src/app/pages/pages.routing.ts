@@ -12,6 +12,9 @@ import { PerfilComponent } from './perfil/perfil.component';
 
 //Mantenimientos
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
+import { OcupacionComponent } from './mantenimientos/ocupacion/ocupacion.component';
+import { ServiciosComponent } from './mantenimientos/servicios/servicios.component';
+import { TrabajosComponent } from './mantenimientos/trabajos/trabajos.component';
 
 const routes: Routes = [
     { 
@@ -28,6 +31,9 @@ const routes: Routes = [
 
             //Mantenimientos
             { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Usuarios' }},
+            { path: 'ocupacion', component: OcupacionComponent, data: { titulo: 'Ocupaciones' }},
+            { path: 'servicios', component: ServiciosComponent, data: { titulo: 'Servicios' }},
+            { path: 'trabajos', component: TrabajosComponent, data: { titulo: 'Trabajos' }},
 
         ]
     },

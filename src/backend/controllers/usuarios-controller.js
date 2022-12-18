@@ -4,6 +4,25 @@ const { response } = require('express');
 const bcrypt = require('bcryptjs');
 const { generarJWT } = require('../helpers/jwt');
 
+const getUsuario = async (req, res = response ) =>{
+
+    const user_id = req.params.id;
+    const usuarioDB = await Usuario.findById(user_id);
+    // const [usuarios, total] =  await Promise.all([
+    //     Usuario
+    //         .find(usuarios.user_id, 'nombre apellidos email fecha_nac rol img'),
+
+    //     Usuario.count()
+            
+    // ]);
+
+    res.json({
+        ok: true,
+        usuarioDB,
+        total
+    });
+}
+
 const getUsuarios = async (req, res) => {
 
     const pag = Number(req.query.pag) || 0;
@@ -167,5 +186,6 @@ module.exports = {
     getUsuarios,
     crearUsuario,
     actualizarUsuario,
-    borrarUsuario
+    borrarUsuario,
+    getUsuario
 }
