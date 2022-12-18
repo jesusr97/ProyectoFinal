@@ -44,20 +44,20 @@ const ServiciosSchema= Schema({
         type: String,
         required: false,
     },
-    ocupacion: {
-        type: Schema.Types.ObjectId,
-        ref: 'Ocupacion',
-        required: false
-    },
     usuario: {
         type: Schema.Types.ObjectId,
         ref: 'usuarios',
         required: true
     },
+    ocupacion: {
+        type: Schema.Types.ObjectId,
+        ref: 'Ocupacion',
+        required: false
+    },
     trabajos: {
         type: Schema.Types.ObjectId,
         ref: 'trabajos',
-        required: true
+        required: false
     }
 });
 

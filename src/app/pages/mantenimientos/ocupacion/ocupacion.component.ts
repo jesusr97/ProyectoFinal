@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, EventEmitter } from '@angular/core';
 import { Usuario } from '../../../models/usuario.model';
+import { OcupacionService } from '../../../services/ocupacion.service';
+import { Ocupacion } from '../../../models/ocupacion.model';
 @Component({
   selector: 'app-ocupacion',
   templateUrl: './ocupacion.component.html',
@@ -7,13 +9,26 @@ import { Usuario } from '../../../models/usuario.model';
 })
 export class OcupacionComponent implements OnInit {
 
+  public ocupaciones: Ocupacion[] = [];
+  public cargando: boolean = true;
   // @Input() myInput: EventEmitter<any> | null =null
-  constructor() { }
+  constructor(private ocupacionService: OcupacionService) { }
 
   ngOnInit(): void {
+    this.cargarOcupacion();
   }
 
-  calculoPuntosDias(){
 
+  cargarOcupacion() {
+    // debugger;
+    
+    this.cargando = false;
+    
+    this.ocupacionService.cargarOcupaciones()
+        .subscribe((resp) =>{
+          console.log(resp);
+        });
   }
+
+
 }

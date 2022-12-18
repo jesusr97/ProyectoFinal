@@ -16,13 +16,13 @@ router.get('/', validarJWT, getOcupaciones);
 
 router.post('/', [
     validarJWT,
-    check('ponderacion','El usuario debe tener una ponderacion').not().isEmpty(),
+    check('puntuacion','El usuario debe tener una puntuacion').not().isEmpty(),
     validarCampos,
 ], crearOcupaciones);
 
 router.put('/:id', [
     validarJWT,
-    check('ponderacion','El usuario debe tener una ponderacion').not().isEmpty(),
+    check('puntuacion','El usuario debe tener una puntuacion').not().isEmpty(),
     validarCampos,
 
 ], actualizarOcupaciones);
