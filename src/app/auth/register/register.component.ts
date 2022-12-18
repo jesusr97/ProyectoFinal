@@ -21,7 +21,7 @@ export class RegisterComponent{
     password: ['1234',[ Validators.required , Validators.minLength(4)]],                    // eliminiar luego pot defecto (solo para pruebas)
     password2: ['1234',[ Validators.required , Validators.minLength(4)]],                    // eliminiar luego pot defecto (solo para pruebas)
     fecha_nac: ['',[ Validators.required]],                    // eliminiar luego pot defecto (solo para pruebas)
-    terminos: [true,[ Validators.required]], 
+    profesion: ['',[ Validators.required]], 
 
   },{
     validator: this.passwordsIguales('password','password2')
@@ -33,25 +33,26 @@ export class RegisterComponent{
   crearUsuario() {
     this.FormularioEnviado =true
     // console.log(this.formularioRegistro.value);
-    console.log(this.formularioRegistro.value);
-
+    
     if(this.formularioRegistro.invalid){
       return
     }
+    console.log(this.formularioRegistro.value);
 
 
     // Realizar la creacion de usuario
-
+    
     this.usuarioService.crearUsuario( this.formularioRegistro.value )
-        .subscribe(resp => {
-          
-        // Navegar a la pagina principal (despues de loguearse)
-        this.router.navigateByUrl('/');
+    .subscribe(resp => {
+      
+      // Navegar a la pagina principal (despues de loguearse)
+      this.router.navigateByUrl('/');
 
-        }, (err) => {
-          // Si sucede un error
-          Swal.fire('Error', err.error.msg, 'error');
-        });
+    }, (err) => {
+      // Si sucede un error
+      Swal.fire('Error', err.error.msg, 'error');
+    });
+    
   }
 
   camposNoValidos(campo: string): boolean {
@@ -65,7 +66,7 @@ export class RegisterComponent{
 
   }
   aceptaTerminos(){
-    return! this.formularioRegistro.get('terminos').value && this.FormularioEnviado;
+    return! this.formularioRegistro.get('profesion').value && this.FormularioEnviado;
   }
 
   contrasenasNoValidas(){

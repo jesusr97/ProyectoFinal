@@ -25,9 +25,9 @@ const getTrabajos = async (req, res = response) =>{
 const crearTrabajo = async (req, res = response) =>{
 
     
-    const user_id = req.user_id;
+    // const user_id = req.user_id;
     const trabajos = new Trabajos({
-        usuario: user_id,
+        // usuario: user_id,
         ...req.body
     });
     try {

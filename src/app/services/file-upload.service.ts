@@ -7,7 +7,7 @@ const base_url = environment.base_url;
   providedIn: 'root'
 })
 export class FileUploadService {
-
+debugger;
   constructor() { }
 
   async actualizarFoto(
@@ -20,8 +20,9 @@ export class FileUploadService {
     try {
       const url = `${base_url}/upload/${tipo}/${id}`;
       const formData = new FormData();
-
       formData.append('imagen', archivo);
+      console.log('formData')
+      console.log(formData)
 
       const resp = await fetch(url, {
         method: 'PUT',
@@ -32,6 +33,8 @@ export class FileUploadService {
         body: formData
 
       });
+      console.log('resp')
+      console.log(resp)
 
       const data = await resp.json();
       if(data.ok){

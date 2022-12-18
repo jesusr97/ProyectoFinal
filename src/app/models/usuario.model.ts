@@ -9,6 +9,7 @@ export class Usuario {
        public apellidos: string,
        public email: string,
        public fecha_nac: Date,
+       public profesion: string,
        public img?: string,
        public saldo_puntos?: string,
        public rol?: string,

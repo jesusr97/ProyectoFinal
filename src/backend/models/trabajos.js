@@ -3,27 +3,22 @@ const {Schema, model} =require('mongoose');
 
 const TrabajosSchema= Schema({
 
-    disponibilidad: {
-        type: JSON,
-        required: true
+    // disponibilidad: {
+    //     type: JSON,
+    //     required: true
         
-    },
+    // },
     profesiones: {
         type: JSON,
         required: true
         
     },
-    profesion_usuario: {
-        type: JSON,
-        required: true
-        
-    },
-    usuario: [{
-        required: true,
+    usuario: {
+        required: false,
         type: Schema.Types.ObjectId,
         ref: 'usuarios'
   
-    }],
+    },
     servicios: {
         required: false,
         type: Schema.Types.ObjectId,

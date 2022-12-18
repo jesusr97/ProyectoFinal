@@ -45,11 +45,11 @@ export class UsuarioService {
       }
     }).pipe(
       map((resp:any) => {
-        const { nombre, apellidos, email, fecha_nac , img = '' , saldo_puntos,
+        const { nombre, apellidos, email, fecha_nac ,profesion,img = '' , saldo_puntos,
                 rol, id_usuario} = resp.usuario;
 
         this.usuario = new Usuario( nombre, apellidos , email, 
-                                    fecha_nac ,img ,
+                                    fecha_nac ,profesion,img ,
                                     saldo_puntos, rol, '' ,id_usuario );
 
         // this.usuario.imprimirUsuario();      
@@ -73,7 +73,8 @@ export class UsuarioService {
     
   }
   actualizarPerfil(data: {email:string, nombre: string , apellidos: string, rol:string}){
-
+    debugger;
+    console.log(this.user_id);
     data  = {
       ...data,
       rol: this.usuario.rol
@@ -99,7 +100,7 @@ export class UsuarioService {
     return this.http.get<any>(url, this.headers)
             .pipe( delay(500), map(resp =>{
               const usuarios = resp.usuarios.map(user => new Usuario(user.nombre, user.apellidos,
-                 user.email,user.fecha_nac,user.img,user.saldo_puntos,user.rol,'',user.id_usuario))
+                 user.email,user.fecha_nac,user.profesion,user.img,user.saldo_puntos,user.rol,'',user.id_usuario))
               return {
                 total: resp.total,
                 usuarios

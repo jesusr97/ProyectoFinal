@@ -6,5 +6,5 @@ export interface RegisterForm {
     password: string,
     password2: string,
     fecha_nac: string,
-    terminos: boolean,
+    profesion: string,
 }

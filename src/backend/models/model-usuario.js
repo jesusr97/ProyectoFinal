@@ -42,6 +42,10 @@ const UsuarioSchema= Schema({
         required: true,
         default: 'USER_ROL'
     },
+    profesion:{
+        type: String,
+        required: true,
+    },
     ocupacion: [{
         type: Schema.Types.ObjectId,
         ref: 'Ocupacion',
@@ -52,11 +56,11 @@ const UsuarioSchema= Schema({
         ref: 'Servicios',
         required: false
     }],
-    trabajos: {
+    trabajos: [{
         type: Schema.Types.ObjectId,
         ref: 'trabajos',
         required: false
-    }
+    }]
 });
 
 UsuarioSchema.method('toJSON',function(){
