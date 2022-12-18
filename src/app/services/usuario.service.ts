@@ -78,12 +78,7 @@ export class UsuarioService {
       ...data,
       rol: this.usuario.rol
     }
-    return this.http.put(`${ base_url }/usuarios/${this.user_id}`, data, {
-      headers: {
-        'x-token': this.token
-      }
-
-    });
+    return this.http.put(`${ base_url }/usuarios/${this.user_id}`, data, this.headers);
 
   }
 
@@ -110,6 +105,17 @@ export class UsuarioService {
                 usuarios
               };
             }))
+  }
+
+  eliminarUsuario(usuario:Usuario){
+    
+    const url = `${base_url}/usuarios/${usuario.id_usuario}`;
+    return this.http.delete(url, this.headers);
+  }
+
+  actualizarRolUsuario(usuario: Usuario){
+
+    return this.http.put(`${ base_url }/usuarios/${usuario.id_usuario}`, usuario, this.headers);
 
   }
 

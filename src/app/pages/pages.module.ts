@@ -16,6 +16,9 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { SharedModule } from '../shared/shared.module';
 import { PerfilComponent } from './perfil/perfil.component';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
+import { OcupacionComponent } from './mantenimientos/ocupacion/ocupacion.component';
+import { ServiciosComponent } from './mantenimientos/servicios/servicios.component';
+import { TrabajosComponent } from './mantenimientos/trabajos/trabajos.component';
 
 
 
@@ -31,6 +34,9 @@ import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component'
         RxjsComponent,
         PerfilComponent,
         UsuariosComponent,
+        OcupacionComponent,
+        ServiciosComponent,
+        TrabajosComponent,
     ],
     exports: [
         DashboardComponent,

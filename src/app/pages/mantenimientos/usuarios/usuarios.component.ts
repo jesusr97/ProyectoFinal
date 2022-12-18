@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 import { UsuarioService } from '../../../services/usuario.service';
 import { Usuario } from '../../../models/usuario.model';
+import { BusquedasService } from '../../../services/busquedas.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -11,10 +13,11 @@ export class UsuariosComponent implements OnInit {
 
   public totalUsuarios: number = 0;
   public usuarios: Usuario[] = [];
+  public usuariosTemp: Usuario[] = [];
   public paginaDesde: number = 0;
   public cargando: boolean = true;
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService, private busquedaService: BusquedasService ) { }
 
   ngOnInit(): void {
 
@@ -31,6 +34,7 @@ export class UsuariosComponent implements OnInit {
 
       this.totalUsuarios = total;
       this.usuarios = usuarios;
+      this.usuariosTemp = usuarios;
       this.cargando= false;
       
     })
@@ -47,6 +51,46 @@ export class UsuariosComponent implements OnInit {
     }
 
     this.cargarUsuarios();
+  }
+
+  buscar(termino:string){
+
+    if(termino.length === 0){
+      return this.usuarios = this.usuariosTemp;
+    }
+
+    this.busquedaService.buscar('usuarios',termino)
+        .subscribe(resultados =>{
+          this.usuarios = resultados;
+        });
+  }
+
+  eliminarUsuario(usuario: Usuario){
+    if(usuario.id_usuario === this.usuarioService.user_id){
+      return Swal.fire('Error','No puede borrarse a si mismo','error');
+    }
+    Swal.fire({
+      title: `¿Deseas eliminar el usuario "${usuario.nombre}"?`,
+      text: "Si lo eliminas no podras revertir el cambio",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar'
+    }).then((result) => {
+      this.usuarioService.eliminarUsuario(usuario)
+      .subscribe(resp => {
+            this.cargarUsuarios();  
+            Swal.fire('Eliminado', `El usuario : "${usuario.nombre}" ha sido eliminado`,'success')
+          });
+    })
+  }
+
+  cambiarRol(usuario){
+
+    this.usuarioService.actualizarRolUsuario(usuario)
+        .subscribe(resp =>{
+          
+        })
+
   }
 
 }
