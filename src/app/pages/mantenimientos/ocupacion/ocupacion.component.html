@@ -20,11 +20,11 @@
     </div>
 </div>
 
-<div class="row" *ngIf="!cargando">
+<div class="row" *ngIf="!cargando" >
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Ocupaciones</h4>
+                <h4 class="card-title">Ocupaciones {{ocupaciones.length}}</h4>
                 <h6 class="card-subtitle">Ocupaciones de los Usuarios</h6>
                 <div class="table-responsive">
                     <table class="table table-striped">
@@ -36,9 +36,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr *ngFor="let ocupacion of ocupaciones">
                                 <td>nombre y apellidos usuario</td>
-                                <td>Puntuaciones</td>
+                                <td>{{ocupacion.puntuacion}}</td>
 
                                 <td class="text-nowrap text-center">
                                     <a href="#" data-toggle="tooltip" data-original-title="Editar"> <i
@@ -59,3 +59,5 @@
         </div>
     </div>
 </div>
+
+

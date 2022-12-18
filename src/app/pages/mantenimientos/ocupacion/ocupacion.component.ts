@@ -26,7 +26,9 @@ export class OcupacionComponent implements OnInit {
     
     this.ocupacionService.cargarOcupaciones()
         .subscribe((resp) =>{
-          console.log(resp);
+          this.cargando= false;
+          this.ocupaciones = resp['ocupacion']
+          console.log(resp['ocupacion']);
         });
   }
 
