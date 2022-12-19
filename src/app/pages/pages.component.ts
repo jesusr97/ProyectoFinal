@@ -1,6 +1,7 @@
 import { Component, OnInit  } from '@angular/core';
 
 import { SettingsService } from '../services/settings.service';
+import { UsuarioService } from '../services/usuario.service';
 
 declare function customInitFunctions();
 
@@ -12,10 +13,21 @@ declare function customInitFunctions();
 })
 export class PagesComponent implements OnInit {
 
-  constructor( private settingsService: SettingsService ) { }
+  constructor( private settingsService: SettingsService , private loginService: UsuarioService) { }
 
   ngOnInit(): void {
     customInitFunctions();
+  }
+
+  compruebaAdmin():boolean{
+    debugger;
+    if(this.loginService.usuario.rol === 'ADMIN'){
+      return true;
+
+    }
+    else{
+      return false;
+    }
   }
 
 }

@@ -1,7 +1,7 @@
 
 
 
-<div id="main-wrapper">
+<div id="main-wrapper" *ngIf="compruebaAdmin() === true">
 
     <app-header></app-header>
 
@@ -34,7 +34,7 @@
         <!-- footer -->
         <!-- ============================================================== -->
         <footer class="footer">
-            © 20xx Admin Pro by wrappixel.com
+            © 2022 "Planet Burter"
         </footer>
         <!-- ============================================================== -->
         <!-- End footer -->
@@ -44,4 +44,50 @@
 
 
 </div>
+
+
+<div id="main-wrapper" *ngIf="compruebaAdmin() === false">
+
+    <app-header></app-header>
+
+    <app-sidebar></app-sidebar>
+
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <!-- Breadcrumbs -->
+            <app-breadcrumbs></app-breadcrumbs>
+
+            <!-- Mi sistema de rutas -->
+            <router-outlet></router-outlet>
+            
+
+            <!-- 
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            -->
+
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <footer class="footer">
+            © 2022 "Planet Burter"
+        </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+
+    </div>
+
+
+</div>
+
 

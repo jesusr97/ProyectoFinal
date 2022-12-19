@@ -15,13 +15,32 @@ export class SidebarComponent implements OnInit {
   public menuItems: any[];
 
 
-  constructor( private sidebarService: SidebarService , private usuarioService:UsuarioService) {
-    this.menuItems = sidebarService.menu;
-    // console.log(this.menuItems)
-    this.usuario = usuarioService.usuario;
+  constructor( private sidebarService: SidebarService , private usuarioService:UsuarioService,
+                private loginService: UsuarioService) {
+    
+                  if(!this.compruebaAdmin){
+                    let hola: any = this.menuItems
+                    hola = sidebarService.noMuestresMenuMantenimientos();
+                  }
+                  else{
+                    this.menuItems = sidebarService.menu;
+                    // console.log(this.menuItems)
+                    this.usuario = usuarioService.usuario;
+
+                  }
   }
 
   ngOnInit(): void {
+  }
+
+  compruebaAdmin():boolean{
+    if(this.loginService.usuario.rol === 'ADMIN'){
+      return true;
+
+    }
+    else if(this.loginService.usuario.rol !== 'ADMIN'){
+      return false;
+    }
   }
 
 }
