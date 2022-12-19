@@ -16,20 +16,11 @@ const ServiciosSchema= Schema({
         required: true
         
     },
-    hora_inicio: {
-        type: Date,
-        required: true
-        
-    },
     dia_fin: {
         type: Date,
         required: false
     },
-    hora_fin: {
-        type: Date, 
-        required: false,
-    },
-    total_horas: {
+    total_dias: {
         type: Number,
         required: true,
         default: 0

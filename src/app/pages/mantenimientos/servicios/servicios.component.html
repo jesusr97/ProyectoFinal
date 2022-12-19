@@ -1,1 +1,72 @@
-<p>servicios works!</p>
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input type="text" class="form-control" placeholder="Buscar ocupacion..." />
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn fast" *ngIf="cargando">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Por favor espere</p>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="!cargando" >
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Ocupaciones {{servicios.length}}</h4>
+                <h6 class="card-subtitle">Ocupaciones de los Usuarios</h6>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombre Usuario</th>
+                                <th>Correo Usuario</th>
+                                <th>Puntuaciones</th>
+                                <th class="text-nowrap">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let servicio of servicios">
+                                <td>{{servicio.usuario.nombre}}</td>
+                                <td>{{servicio.usuario.email}}</td>
+
+                                <input type="text"
+                                        class="form-control"
+                                        placeholder="Puntuacion"
+                                        [(ngModel)]="ocupacion.puntuacion"/>
+                                <!-- <td>{{ocupacion.puntuacion}}</td> -->
+
+                                <td class="text-nowrap text-center">
+                                    <a  class="cursor" data-toggle="tooltip" data-original-title="Guardar Cambios" (click)="actualizarOcupaciones(ocupacion)">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sd-card-fill" viewBox="0 0 16 16">
+                                            <path d="M12.5 0H5.914a1.5 1.5 0 0 0-1.06.44L2.439 2.853A1.5 1.5 0 0 0 2 3.914V14.5A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-13A1.5 1.5 0 0 0 12.5 0Zm-7 2.75a.75.75 0 0 1 .75.75v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 1 .75-.75Zm2 0a.75.75 0 0 1 .75.75v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 1 .75-.75Zm2.75.75v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 1 1.5 0Zm1.25-.75a.75.75 0 0 1 .75.75v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 1 .75-.75Z"/>
+                                          </svg> </a>
+                                    <!-- <a class="cursor" data-toggle="tooltip" data-original-title="Eliminar"> <i
+                                            class="fa fa-close text-danger"></i> </a> -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- <button class="btn btn-secondary">Anteriores</button>
+                &nbsp;
+                <button class="btn btn-secondary">Siguientes</button> -->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

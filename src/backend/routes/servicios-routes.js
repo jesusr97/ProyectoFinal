@@ -21,9 +21,7 @@ router.post('/', [
     check('confirma_usuarios').not().isEmpty(),
     check('dia_inicio').isDate().not().isEmpty(),
     check('dia_fin').isDate().not().isEmpty(),
-    check('hora_inicio').isDate().not().isEmpty(),
-    check('hora_fin').isDate().not().isEmpty(),
-    check('total_horas').not().isEmpty(),
+    check('total_dias').not().isEmpty(),
     check('usuario','El id del usuario debe de ser valido').isMongoId(),
 
     validarCampos,
@@ -34,9 +32,7 @@ router.put('/:id', [
     check('confirma_usuarios').not().isEmpty(),
     check('dia_inicio').isDate().not().isEmpty(),
     check('dia_fin').isDate().not().isEmpty(),
-    check('hora_inicio').isDate().not().isEmpty(),
-    check('hora_fin').isDate().not().isEmpty(),
-    check('total_horas').not().isEmpty(),
+    check('total_dias').not().isEmpty(),
     check('usuario','El id del usuario debe de ser valido').isMongoId(),
     validarCampos
 
