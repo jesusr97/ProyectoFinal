@@ -7,7 +7,6 @@ const base_url = environment.base_url;
   providedIn: 'root'
 })
 export class FileUploadService {
-debugger;
   constructor() { }
 
   async actualizarFoto(

@@ -73,7 +73,6 @@ export class UsuarioService {
     
   }
   actualizarPerfil(data: {email:string, nombre: string , apellidos: string, rol:string}){
-    debugger;
     console.log(this.user_id);
     data  = {
       ...data,

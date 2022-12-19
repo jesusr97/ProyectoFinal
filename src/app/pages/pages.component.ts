@@ -20,7 +20,6 @@ export class PagesComponent implements OnInit {
   }
 
   compruebaAdmin():boolean{
-    debugger;
     if(this.loginService.usuario.rol === 'ADMIN'){
       return true;
 

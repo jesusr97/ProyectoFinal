@@ -29,22 +29,28 @@
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
+                            
+
                             <tr>
                                 <th>Nombre Usuario</th>
-                                <th>Correo Usuario</th>
-                                <th>Puntuaciones</th>
+                                <th>Dia Inicio</th>
+                                <th>Dia Fin</th>
+                                <th>Total Dias</th>
+                                <!-- <th>Puntuaciones</th> -->
                                 <th class="text-nowrap">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let servicio of servicios">
                                 <td>{{servicio.usuario.nombre}}</td>
-                                <td>{{servicio.usuario.email}}</td>
+                                <td>{{servicio.dia_inicio}}</td>
+                                <td>{{servicio.dia_fin}}</td>
+                                <td>{{servicio.total_dias}}</td>
 
-                                <input type="text"
+                                <!-- <input type="text"
                                         class="form-control"
                                         placeholder="Puntuacion"
-                                        [(ngModel)]="ocupacion.puntuacion"/>
+                                        [(ngModel)]="ocupacion.puntuacion"/> -->
                                 <!-- <td>{{ocupacion.puntuacion}}</td> -->
 
                                 <td class="text-nowrap text-center">

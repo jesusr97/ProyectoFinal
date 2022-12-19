@@ -40,7 +40,6 @@ export class PerfilComponent implements OnInit {
   }
 
   actualizarPerfil() {
-    debugger;
     this.usuarioService.actualizarPerfil( this.perfilForm.value )
         .subscribe( () => {
           const { nombre, apellidos, email } = this.perfilForm.value;
@@ -56,7 +55,6 @@ export class PerfilComponent implements OnInit {
 
 
   cambiarImagen( file: File ) {
-    debugger;
     this.imagenSubir = file;
 
     if ( !file ) { 
@@ -73,7 +71,7 @@ export class PerfilComponent implements OnInit {
   }
 
   subirImagen() {
-debugger;
+// debugger;
     this.fileUploadService
       .actualizarFoto( this.imagenSubir, 'usuarios', this.usuario.id_usuario )
       .then( (img) => {
